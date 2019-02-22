@@ -1,4 +1,4 @@
-export class FirKernel {
+export class AnyFirKernel {
   private readonly _radius: number;
 
   private readonly _impulseResponse: (x: number) => number;
@@ -29,22 +29,5 @@ export class FirKernel {
     }
 
     return this._impulseResponse(x);
-  }
-}
-
-
-export class WindowedFirKernel extends FirKernel {
-  private readonly _window: (x: number) => number;
-
-
-  public constructor(radius: number, impulseResponse: (x: number) => number, window: (x: number) => number) {
-    super(radius, impulseResponse);
-
-    this._window = window;
-  }
-
-
-  public at(x: number): number {
-    return super.at(x) * this._window(x);
   }
 }

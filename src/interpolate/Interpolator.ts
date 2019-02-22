@@ -1,15 +1,15 @@
 import { BoundedView } from './BoundedView';
-import { CompensatingSummator } from './CompensatingSummator';
-import { FirKernel } from './FirKernel';
+import { CompensatingSummator } from './utils';
+import { AnyFirKernel } from './kernels';
 
 
 export class Interpolator {
   private readonly _boundedView: BoundedView;
 
-  private readonly _interpolatingKernel: FirKernel;
+  private readonly _interpolatingKernel: AnyFirKernel;
 
 
-  public constructor(boundedView: BoundedView, interpolatingKernel: FirKernel) {
+  public constructor(boundedView: BoundedView, interpolatingKernel: AnyFirKernel) {
     this._boundedView = boundedView;
     this._interpolatingKernel = interpolatingKernel;
   }

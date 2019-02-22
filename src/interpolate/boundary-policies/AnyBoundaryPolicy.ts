@@ -1,4 +1,4 @@
-export class BoundaryPolicy {
+export class AnyBoundaryPolicy {
   public constructor() { }
 
 

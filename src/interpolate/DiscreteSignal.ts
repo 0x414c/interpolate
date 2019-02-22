@@ -14,11 +14,11 @@ export class DiscreteSignal {
 
   public at(n: number): number | never {
     if (!Number.isInteger(n)) {
-      throw new RangeError(`Non-integer index \`${n}' couldn't be used to access a sample`);
+      throw new RangeError(`Non-integer index \`${n}' couldn't be used to access a sample.`);
     }
 
     if ((n < 0) || (n > (this.samplesCount - 1))) {
-      throw new RangeError(`Index \`${n}' is out of bounds`);
+      throw new RangeError(`Index \`${n}' is out of bounds.`);
     }
 
     return this._samples[n];

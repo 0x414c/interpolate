@@ -6,8 +6,8 @@ import {
   DiscreteSignal,
   Interpolator,
   LanczosKernel,
-  ReflectBoundary,
-  RepeatBoundary,
+  Mirror,
+  Repeat,
   SquareKernel,
   TriangleKernel,
 } from '../..';
@@ -22,22 +22,22 @@ const samples = [
 ];
 const signal = new DiscreteSignal(samples);
 
-const reflect = new ReflectBoundary();
-// const repeat = new RepeatBoundary();
+const mirror = new Mirror();
+// const repeat = new Repeat();
 
-const padded = new BoundedView(signal, reflect);
-// const padded = new BoundedView(signal, repeat);
+const padded = new BoundedView(samples, mirror);
+// const padded = new BoundedView(samples, repeat);
 
 const lanczos3 = new LanczosKernel(3.0);
-const triangle = new TriangleKernel();
-const square = new SquareKernel();
+// const triangle = new TriangleKernel();
+// const square = new SquareKernel();
 
 const interpolated = new Interpolator(padded, lanczos3);
 // const interpolated = new Interpolator(padded, triangle);
 // const interpolated = new Interpolator(padded, square);
 // TODO: InterpolatedView.
 
-const step = 0.05;
+const step = 0.1;
 const output = [ ];
 for (let i = 0; i < signal.samplesCount; ++i) {
   console.log(`i: ${i}, s[i]: ${signal.at(i)}, s'[i]: ${interpolated.at(i)}`);
