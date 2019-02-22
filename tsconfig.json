@@ -70,6 +70,9 @@
     /* Enables experimental support for ES decorators. */
     // "experimentalDecorators": false,
 
+    /* Show verbose diagnostic information. */
+    // "extendedDiagnostics": false,
+
     /* Disallow inconsistently-cased references to the same file. */
     "forceConsistentCasingInFileNames": true,
 
@@ -132,7 +135,9 @@
      *   `ES2018.Promise`,
      *   `ES2018.RegExp`,
      *   `ESNext.AsyncIterable`,
-     *   `ESNext.Array`.
+     *   `ESNext.Array`,
+     *   `ESNext.Intl`,
+     *   `ESNext.Symbol`.
      * Note: If `--lib` is not specified a default list of libraries are injected.  The default libraries injected are:
      *   for `--target ES5`: `DOM, ES5, ScriptHost`; for `--target ES6`: `DOM, ES6, DOM.Iterable, ScriptHost`.
      */
@@ -191,7 +196,7 @@
     // "noEmitHelpers": false,
 
     /* Do not emit outputs if any errors were reported. */
-    // "noEmitOnError": false,
+    "noEmitOnError": true,
 
     /* Do not truncate error messages. */
     // "noErrorTruncation": false,
@@ -231,7 +236,7 @@
 
     /* Concatenate and emit output to single file.  The order of concatenation is determined by the list of files passed
      *   to the compiler on the command line along with triple-slash references and imports.  See output file order
-     * documentation for more details.
+     *   documentation for more details.
      */
     // "outFile": "",
 
@@ -291,10 +296,13 @@
 
     /*
      * Enable all strict type checking options.
-     * Enabling `--strict` enables `--noImplicitAny`, `--noImplicitThis`, `--alwaysStrict`, `--strictNullChecks`,
-     *   `--strictFunctionTypes` and `--strictPropertyInitialization`.
+     * Enabling `--strict` enables `--noImplicitAny`, `--noImplicitThis`, `--alwaysStrict`, `--strictBindCallApply`,
+     *   `--strictNullChecks`, `--strictFunctionTypes` and `--strictPropertyInitialization`.
      */
     "strict": true,
+
+    /* Enable stricter checking of of the bind, call, and apply methods on functions. */
+    // "strictBindCallApply": false,
 
     /* Disable bivariant parameter checking for function types. */
     // "strictFunctionTypes": false,
@@ -346,7 +354,11 @@
      */
     // "typeRoots": [],
 
-    /* Run the compiler in watch mode.  Watch input files and trigger recompilation on changes. */
+    /*
+     * Run the compiler in watch mode.  Watch input files and trigger recompilation on changes.
+     * The implementation of watching files and directories can be configured using environment variable.
+     * See [configuring watch](https://www.typescriptlang.org/docs/handbook/configuring-watch.html) for more details.
+     */
     // "watch": false,
   },
 }

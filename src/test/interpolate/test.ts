@@ -10,7 +10,7 @@ import {
   RepeatBoundary,
   SquareKernel,
   TriangleKernel,
-} from './interpolate';
+} from '../..';
 
 
 const samples = [
@@ -23,32 +23,32 @@ const samples = [
 const signal = new DiscreteSignal(samples);
 
 const reflect = new ReflectBoundary();
-const repeat = new RepeatBoundary();
+// const repeat = new RepeatBoundary();
 
 const padded = new BoundedView(signal, reflect);
-// const padded = new PaddedView(signal, repeat);
+// const padded = new BoundedView(signal, repeat);
 
-const lanczos3 = new LanczosKernel(3);
+const lanczos3 = new LanczosKernel(3.0);
 const triangle = new TriangleKernel();
 const square = new SquareKernel();
 
 const interpolated = new Interpolator(padded, lanczos3);
 // const interpolated = new Interpolator(padded, triangle);
 // const interpolated = new Interpolator(padded, square);
-// TODO: InterpolatedView
+// TODO: InterpolatedView.
 
 const step = 0.05;
-const output = [];
+const output = [ ];
 for (let i = 0; i < signal.samplesCount; ++i) {
   console.log(`i: ${i}, s[i]: ${signal.at(i)}, s'[i]: ${interpolated.at(i)}`);
 
-  output.push([i, interpolated.at(i)]);
+  output.push([ i, interpolated.at(i) ]);
 
   for (let j = new CompensatingSummator(i + step); j.total < i + 1; j.add(step)) {
     console.log(`j: ${j.total}, s'[j]: ${interpolated.at(j.total)}`);
 
-    output.push([j.total, interpolated.at(j.total)]);
+    output.push([ j.total, interpolated.at(j.total) ]);
   }
 }
 
-writeFileSync('./output.dat', output.map(([i, s]) => `${i} ${s}`).join('\n'));
+writeFileSync('./output.dat', output.map(([ i, s ]) => `${i} ${s}`).join('\n'));

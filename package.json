@@ -1,0 +1,22 @@
+{
+  "name": "interpolate",
+  "version": "0.0.1",
+  "license": "UNLICENSED",
+  "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "devDependencies": {
+    "@types/node": "^11.9.5",
+    "shx": "^0.3.2",
+    "typescript": "^3.3.3333"
+  },
+  "scripts": {
+    "tsc": "tsc --build ./tsconfig.json",
+    "tsc:watch": "npm run tsc -- --watch",
+    "dist:build": "npm run tsc",
+    "dist:build:test": "npm run dist:build && npm run dist:test",
+    "dist:clean": "shx rm -rf ./dist",
+    "dist:test": "node ./dist/test/interpolate/test.js",
+    "all": "npm run dist:build:test"
+  }
+}
